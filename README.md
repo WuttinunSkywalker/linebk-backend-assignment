@@ -1,4 +1,4 @@
-# LineBK Backend Assignment
+![image (3)](https://github.com/user-attachments/assets/1861d078-c4ed-4ea8-afd2-8010f133b890)# LineBK Backend Assignment
 
 ---
 
@@ -214,7 +214,7 @@ The application automatically seeds test data during startup (via [initial seed 
 
 ### ER Diagram
 
-![ER Diagram](https://github.com/user-attachments/assets/13f6a27a-4fc0-4c8c-ab2d-b5264b754657)
+![image (1)](https://github.com/user-attachments/assets/c43d3a19-f49a-4b6c-a87f-184b668ace9f)
 
 > **Note:** When using Docker Compose, migrations are automatically executed during container startup.
 
@@ -307,7 +307,9 @@ k6 run k6/stress-test.js
 
 ### Stress Test Results
 Here are the performance test results captured during K6 testing:
-![Stress test result](https://github.com/user-attachments/assets/efdb433c-5329-4ca2-9d05-3d45293b2958)
+
+![image (3)](https://github.com/user-attachments/assets/14314e25-ed35-4081-a9b4-dbee588214a8)
+
 _The above screenshot shows the K6 performance metrics including response times, throughput, and error rates during load testing._
 
 ---
