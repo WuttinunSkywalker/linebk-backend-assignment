@@ -1,4 +1,4 @@
-![image (3)](https://github.com/user-attachments/assets/1861d078-c4ed-4ea8-afd2-8010f133b890)# LineBK Backend Assignment
+LineBK Backend Assignment
 
 ---
 
