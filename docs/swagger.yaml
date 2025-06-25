@@ -1,0 +1,597 @@
+basePath: /
+definitions:
+  account.AccountBalanceResponse:
+    properties:
+      amount:
+        example: 181471.73
+        type: number
+    type: object
+  account.AccountDetailResponse:
+    properties:
+      color:
+        example: '#00a1e2'
+        type: string
+      is_main_account:
+        example: true
+        type: boolean
+      progress:
+        example: 0
+        type: integer
+    type: object
+  account.AccountFlagResponse:
+    properties:
+      flag_id:
+        example: 1
+        type: integer
+      flag_type:
+        example: system
+        type: string
+      flag_value:
+        example: Disbursement
+        type: string
+    type: object
+  account.AccountResponse:
+    properties:
+      account_balance:
+        $ref: '#/definitions/account.AccountBalanceResponse'
+      account_detail:
+        $ref: '#/definitions/account.AccountDetailResponse'
+      account_flag:
+        items:
+          $ref: '#/definitions/account.AccountFlagResponse'
+        type: array
+      account_id:
+        example: acc_4d2fbe84-89ee-4d6f-8088-46b0121000ed
+        type: string
+      account_number:
+        example: 090-5-70425-2
+        type: string
+      created_at:
+        example: "2025-03-24T13:12:39Z"
+        type: string
+      currency:
+        example: THB
+        type: string
+      issuer:
+        example: TestLab
+        type: string
+      name:
+        example: Saving Account
+        type: string
+      type:
+        example: saving-account
+        type: string
+      user_id:
+        example: 25799236-5dbc-411a-8641-b8336e088b9b
+        type: string
+    type: object
+  auth.LoginResponse:
+    properties:
+      access_token:
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJsaW5lYmstYmFja2VuZC1hc3NpZ25tZW50Iiwic3ViIjoidGVzdC11c2VyIiwiZXhwIjoxNzUwNzU5MTIzLCJpYXQiOjE3NTA3MTU5MjN9.NSuzaSM6CdrnNtcsrybBsn_2UhGpOlR5g1fOWuHYrzM
+        type: string
+      refresh_token:
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJsaW5lYmstYmFja2VuZC1hc3NpZ25tZW50Iiwic3ViIjoidGVzdC11c2VyIiwiZXhwIjoxNzUwODAyMzIzLCJpYXQiOjE3NTA3MTU5MjN9.hM7mwFmaXW0CZj1JYg44ic-94g3Ngbpg4P-7SGAcXtI
+        type: string
+    type: object
+  auth.LoginWithPinRequest:
+    properties:
+      pin:
+        example: "123456"
+        type: string
+      user_id:
+        example: 0befecd8-fccb-417e-aa0a-1a23c021f413
+        type: string
+    required:
+    - pin
+    - user_id
+    type: object
+  banner.BannerResponse:
+    properties:
+      banner_id:
+        example: banner_27ce63f9-63ac-4815-8681-64d1218e625f
+        type: string
+      created_at:
+        example: "2024-01-15T10:30:00Z"
+        type: string
+      description:
+        example: You can start applying
+        type: string
+      image:
+        example: https://example.com/banner.jpg
+        type: string
+      title:
+        example: Want some money?
+        type: string
+      updated_at:
+        example: "2024-01-15T10:30:00Z"
+        type: string
+      user_id:
+        example: 0cc8b473-df92-47ec-9b85-57e28aca4adf
+        type: string
+    type: object
+  debit.DebitCardDesignResponse:
+    properties:
+      border_color:
+        example: '#ffffff'
+        type: string
+      color:
+        example: '#00a1e2'
+        type: string
+    type: object
+  debit.DebitCardDetailResponse:
+    properties:
+      issuer:
+        example: TestLab
+        type: string
+      number:
+        example: 1234 56** **** 9323
+        type: string
+    type: object
+  debit.DebitCardResponse:
+    properties:
+      card_id:
+        example: card_e2c27e2b-0a8b-4791-8cf5-2186626436e5
+        type: string
+      created_at:
+        example: "2024-07-04T12:40:34Z"
+        type: string
+      debit_card_design:
+        $ref: '#/definitions/debit.DebitCardDesignResponse'
+      debit_card_detail:
+        $ref: '#/definitions/debit.DebitCardDetailResponse'
+      debit_card_status:
+        $ref: '#/definitions/debit.DebitCardStatusResponse'
+      name:
+        example: My Salary
+        type: string
+      user_id:
+        example: 25799236-5dbc-411a-8641-b8336e088b9b
+        type: string
+    type: object
+  debit.DebitCardStatusResponse:
+    properties:
+      status:
+        example: Active
+        type: string
+    type: object
+  response.ErrorResponse:
+    properties:
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  response.PaginatedResponse:
+    properties:
+      data: {}
+      pagination:
+        $ref: '#/definitions/response.Pagination'
+      success:
+        type: boolean
+    type: object
+  response.Pagination:
+    properties:
+      limit:
+        type: integer
+      page:
+        type: integer
+      total_items:
+        type: integer
+      total_pages:
+        type: integer
+    type: object
+  response.SuccessResponse:
+    properties:
+      data: {}
+      success:
+        type: boolean
+    type: object
+  transaction.TransactionResponse:
+    properties:
+      created_at:
+        example: "2024-11-23T17:18:21Z"
+        type: string
+      image:
+        example: https://dummyimage.com/54x54/999/fff
+        type: string
+      is_bank:
+        example: true
+        type: boolean
+      name:
+        example: Transaction_135017
+        type: string
+      transaction_id:
+        example: txn_a33627c4-86dd-4714-8386-29b9f9f07c00
+        type: string
+      user_id:
+        example: 25799236-5dbc-411a-8641-b8336e088b9b
+        type: string
+    type: object
+  user.UserGreetingResponse:
+    properties:
+      created_at:
+        example: "2021-03-07T10:31:51Z"
+        type: string
+      greeting:
+        example: Hello Misty Von-Lemke
+        type: string
+      user_id:
+        example: 25799236-5dbc-411a-8641-b8336e088b9b
+        type: string
+    type: object
+  user.UserPreviewResponse:
+    properties:
+      image:
+        example: https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/47.jpg
+        type: string
+      name:
+        example: Misty Von-Lemke
+        type: string
+    type: object
+  user.UserResponse:
+    properties:
+      created_at:
+        example: "2021-03-07T04:03:06Z"
+        type: string
+      image:
+        example: https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/47.jpg
+        type: string
+      name:
+        example: Misty Von-Lemke
+        type: string
+      updated_at:
+        example: "2025-02-08T02:06:17Z"
+        type: string
+      user_id:
+        example: 25799236-5dbc-411a-8641-b8336e088b9b
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is the API documentation for LineBK Backend Assignment
+  title: LineBK Backend Assignment API
+  version: "1.0"
+paths:
+  /api/accounts:
+    get:
+      consumes:
+      - application/json
+      description: Get paginated list of accounts for the authenticated user
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 10
+        description: Items per page
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully retrieved accounts
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.PaginatedResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/account.AccountResponse'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get user's accounts
+      tags:
+      - accounts
+  /api/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate user with user ID and PIN
+      parameters:
+      - description: Login credentials
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.LoginWithPinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Login successful
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/auth.LoginResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Login with PIN
+      tags:
+      - auth
+  /api/banners:
+    get:
+      consumes:
+      - application/json
+      description: Get paginated list of banners for the authenticated user
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 10
+        description: Number of items per page
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.PaginatedResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/banner.BannerResponse'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get user's banners
+      tags:
+      - banners
+  /api/debits:
+    get:
+      consumes:
+      - application/json
+      description: Get paginated list of debit cards for the authenticated user
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 10
+        description: Number of items per page
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.PaginatedResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/debit.DebitCardResponse'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get user's debit cards
+      tags:
+      - debit-cards
+  /api/transactions:
+    get:
+      consumes:
+      - application/json
+      description: Get paginated list of transactions for the authenticated user
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 10
+        description: Number of items per page
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.PaginatedResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/transaction.TransactionResponse'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get user's transactions
+      tags:
+      - transactions
+  /api/users/{userid}/preview:
+    get:
+      consumes:
+      - application/json
+      description: Get preview information of a user
+      parameters:
+      - description: User ID
+        in: path
+        name: userid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/user.UserPreviewResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Get user's preview
+      tags:
+      - users
+  /api/users/me:
+    get:
+      consumes:
+      - application/json
+      description: Get user information of the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/user.UserResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get current user
+      tags:
+      - users
+  /api/users/me/greetings:
+    get:
+      consumes:
+      - application/json
+      description: Get personalized greeting message for the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/user.UserGreetingResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Get user's greeting message
+      tags:
+      - users
+securityDefinitions:
+  BearerAuth:
+    description: 'Type "Bearer" followed by a space and JWT token example: "Bearer
+      {token}.'
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

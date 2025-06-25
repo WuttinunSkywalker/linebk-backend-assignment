@@ -1,0 +1,926 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is the API documentation for LineBK Backend Assignment",
+        "title": "LineBK Backend Assignment API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/api/accounts": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get paginated list of accounts for the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "accounts"
+                ],
+                "summary": "Get user's accounts",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 10,
+                        "description": "Items per page",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved accounts",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.PaginatedResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/account.AccountResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "description": "Authenticate user with user ID and PIN",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Login with PIN",
+                "parameters": [
+                    {
+                        "description": "Login credentials",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.LoginWithPinRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.SuccessResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/auth.LoginResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/banners": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get paginated list of banners for the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "banners"
+                ],
+                "summary": "Get user's banners",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 10,
+                        "description": "Number of items per page",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.PaginatedResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/banner.BannerResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/debits": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get paginated list of debit cards for the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "debit-cards"
+                ],
+                "summary": "Get user's debit cards",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 10,
+                        "description": "Number of items per page",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.PaginatedResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/debit.DebitCardResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/transactions": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get paginated list of transactions for the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Get user's transactions",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 10,
+                        "description": "Number of items per page",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.PaginatedResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/transaction.TransactionResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/me": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get user information of the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get current user",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.SuccessResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/user.UserResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/me/greetings": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get personalized greeting message for the authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get user's greeting message",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.SuccessResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/user.UserGreetingResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/{userid}/preview": {
+            "get": {
+                "description": "Get preview information of a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get user's preview",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "userid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.SuccessResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/user.UserPreviewResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "account.AccountBalanceResponse": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number",
+                    "example": 181471.73
+                }
+            }
+        },
+        "account.AccountDetailResponse": {
+            "type": "object",
+            "properties": {
+                "color": {
+                    "type": "string",
+                    "example": "#00a1e2"
+                },
+                "is_main_account": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "progress": {
+                    "type": "integer",
+                    "example": 0
+                }
+            }
+        },
+        "account.AccountFlagResponse": {
+            "type": "object",
+            "properties": {
+                "flag_id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "flag_type": {
+                    "type": "string",
+                    "example": "system"
+                },
+                "flag_value": {
+                    "type": "string",
+                    "example": "Disbursement"
+                }
+            }
+        },
+        "account.AccountResponse": {
+            "type": "object",
+            "properties": {
+                "account_balance": {
+                    "$ref": "#/definitions/account.AccountBalanceResponse"
+                },
+                "account_detail": {
+                    "$ref": "#/definitions/account.AccountDetailResponse"
+                },
+                "account_flag": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/account.AccountFlagResponse"
+                    }
+                },
+                "account_id": {
+                    "type": "string",
+                    "example": "acc_4d2fbe84-89ee-4d6f-8088-46b0121000ed"
+                },
+                "account_number": {
+                    "type": "string",
+                    "example": "090-5-70425-2"
+                },
+                "created_at": {
+                    "type": "string",
+                    "example": "2025-03-24T13:12:39Z"
+                },
+                "currency": {
+                    "type": "string",
+                    "example": "THB"
+                },
+                "issuer": {
+                    "type": "string",
+                    "example": "TestLab"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Saving Account"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "saving-account"
+                },
+                "user_id": {
+                    "type": "string",
+                    "example": "25799236-5dbc-411a-8641-b8336e088b9b"
+                }
+            }
+        },
+        "auth.LoginResponse": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string",
+                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJsaW5lYmstYmFja2VuZC1hc3NpZ25tZW50Iiwic3ViIjoidGVzdC11c2VyIiwiZXhwIjoxNzUwNzU5MTIzLCJpYXQiOjE3NTA3MTU5MjN9.NSuzaSM6CdrnNtcsrybBsn_2UhGpOlR5g1fOWuHYrzM"
+                },
+                "refresh_token": {
+                    "type": "string",
+                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJsaW5lYmstYmFja2VuZC1hc3NpZ25tZW50Iiwic3ViIjoidGVzdC11c2VyIiwiZXhwIjoxNzUwODAyMzIzLCJpYXQiOjE3NTA3MTU5MjN9.hM7mwFmaXW0CZj1JYg44ic-94g3Ngbpg4P-7SGAcXtI"
+                }
+            }
+        },
+        "auth.LoginWithPinRequest": {
+            "type": "object",
+            "required": [
+                "pin",
+                "user_id"
+            ],
+            "properties": {
+                "pin": {
+                    "type": "string",
+                    "example": "123456"
+                },
+                "user_id": {
+                    "type": "string",
+                    "example": "0befecd8-fccb-417e-aa0a-1a23c021f413"
+                }
+            }
+        },
+        "banner.BannerResponse": {
+            "type": "object",
+            "properties": {
+                "banner_id": {
+                    "type": "string",
+                    "example": "banner_27ce63f9-63ac-4815-8681-64d1218e625f"
+                },
+                "created_at": {
+                    "type": "string",
+                    "example": "2024-01-15T10:30:00Z"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "You can start applying"
+                },
+                "image": {
+                    "type": "string",
+                    "example": "https://example.com/banner.jpg"
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Want some money?"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "example": "2024-01-15T10:30:00Z"
+                },
+                "user_id": {
+                    "type": "string",
+                    "example": "0cc8b473-df92-47ec-9b85-57e28aca4adf"
+                }
+            }
+        },
+        "debit.DebitCardDesignResponse": {
+            "type": "object",
+            "properties": {
+                "border_color": {
+                    "type": "string",
+                    "example": "#ffffff"
+                },
+                "color": {
+                    "type": "string",
+                    "example": "#00a1e2"
+                }
+            }
+        },
+        "debit.DebitCardDetailResponse": {
+            "type": "object",
+            "properties": {
+                "issuer": {
+                    "type": "string",
+                    "example": "TestLab"
+                },
+                "number": {
+                    "type": "string",
+                    "example": "1234 56** **** 9323"
+                }
+            }
+        },
+        "debit.DebitCardResponse": {
+            "type": "object",
+            "properties": {
+                "card_id": {
+                    "type": "string",
+                    "example": "card_e2c27e2b-0a8b-4791-8cf5-2186626436e5"
+                },
+                "created_at": {
+                    "type": "string",
+                    "example": "2024-07-04T12:40:34Z"
+                },
+                "debit_card_design": {
+                    "$ref": "#/definitions/debit.DebitCardDesignResponse"
+                },
+                "debit_card_detail": {
+                    "$ref": "#/definitions/debit.DebitCardDetailResponse"
+                },
+                "debit_card_status": {
+                    "$ref": "#/definitions/debit.DebitCardStatusResponse"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "My Salary"
+                },
+                "user_id": {
+                    "type": "string",
+                    "example": "25799236-5dbc-411a-8641-b8336e088b9b"
+                }
+            }
+        },
+        "debit.DebitCardStatusResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "example": "Active"
+                }
+            }
+        },
+        "response.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "response.PaginatedResponse": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "pagination": {
+                    "$ref": "#/definitions/response.Pagination"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "response.Pagination": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "total_items": {
+                    "type": "integer"
+                },
+                "total_pages": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response.SuccessResponse": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "transaction.TransactionResponse": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string",
+                    "example": "2024-11-23T17:18:21Z"
+                },
+                "image": {
+                    "type": "string",
+                    "example": "https://dummyimage.com/54x54/999/fff"
+                },
+                "is_bank": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Transaction_135017"
+                },
+                "transaction_id": {
+                    "type": "string",
+                    "example": "txn_a33627c4-86dd-4714-8386-29b9f9f07c00"
+                },
+                "user_id": {
+                    "type": "string",
+                    "example": "25799236-5dbc-411a-8641-b8336e088b9b"
+                }
+            }
+        },
+        "user.UserGreetingResponse": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string",
+                    "example": "2021-03-07T10:31:51Z"
+                },
+                "greeting": {
+                    "type": "string",
+                    "example": "Hello Misty Von-Lemke"
+                },
+                "user_id": {
+                    "type": "string",
+                    "example": "25799236-5dbc-411a-8641-b8336e088b9b"
+                }
+            }
+        },
+        "user.UserPreviewResponse": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "type": "string",
+                    "example": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/47.jpg"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Misty Von-Lemke"
+                }
+            }
+        },
+        "user.UserResponse": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string",
+                    "example": "2021-03-07T04:03:06Z"
+                },
+                "image": {
+                    "type": "string",
+                    "example": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/47.jpg"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Misty Von-Lemke"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "example": "2025-02-08T02:06:17Z"
+                },
+                "user_id": {
+                    "type": "string",
+                    "example": "25799236-5dbc-411a-8641-b8336e088b9b"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "description": "Type \"Bearer\" followed by a space and JWT token example: \"Bearer {token}.",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
