@@ -121,7 +121,7 @@ Once the application is running:
 | **API Server**     | `8080` | Main application API | `http://localhost:8080`    |
 | **MySQL Database** | `3306` | Database connection  | For local development only |
 
-> 📋 See the [API Documentation](#api-documentation) section for test credentials and detailed testing instructions.
+> 📋 See the [API Documentation](#-api-documentation) section for test credentials and detailed testing instructions.
 
 ### 4. Local Development Setup (Optional)
 
