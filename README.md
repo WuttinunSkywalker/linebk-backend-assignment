@@ -214,6 +214,8 @@ The application automatically seeds test data during startup (via [initial seed 
 
 ### ER Diagram
 
+![ER Diagram](https://github.com/user-attachments/assets/13f6a27a-4fc0-4c8c-ab2d-b5264b754657)
+
 > **Note:** When using Docker Compose, migrations are automatically executed during container startup.
 
 ### Adding More Test Data
@@ -304,9 +306,8 @@ k6 run k6/stress-test.js
 ```
 
 ### Stress Test Results
-
 Here are the performance test results captured during K6 testing:
-
+![Stress test result](https://github.com/user-attachments/assets/efdb433c-5329-4ca2-9d05-3d45293b2958)
 _The above screenshot shows the K6 performance metrics including response times, throughput, and error rates during load testing._
 
 ---
