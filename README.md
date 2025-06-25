@@ -24,7 +24,7 @@ This backend API assignment focuses on building robust functionalities with a st
 **Technology Stack:**
 
 - **Backend:** Go 1.24.4 with Gin framework
-- **Database:** MySQL 8.0
+- **Database:** MySQL 8.0 with SQLx
 - **Authentication:** JWT tokens
 - **Documentation:** Swagger
 - **Testing:** Unit tests with mocks, K6 performance testing
@@ -41,6 +41,8 @@ This backend API assignment focuses on building robust functionalities with a st
 - 📈 **Performance Testing** - K6 load testing capabilities
 - 📚 **API Documentation** - Auto-generated Swagger documentation
 - 🐳 **Docker Support** - Containerized deployment with Docker Compose
+
+---
 
 ## ⚙️ Prerequisites
 
@@ -306,6 +308,7 @@ k6 run k6/stress-test.js
 ```
 
 ### Stress Test Results
+
 Here are the performance test results captured during K6 testing:
 
 ![image (3)](https://github.com/user-attachments/assets/14314e25-ed35-4081-a9b4-dbee588214a8)
