@@ -324,6 +324,8 @@ Here are the performance test results captured during K6 testing:
 
 _The above screenshot shows the K6 performance metrics including response times, throughput, and error rates during load testing._
 
+For detailed stress test configuration and implementation, see [k6/stress-test.js](k6/stress-test.js).
+
 ---
 
 ## 📁 Project Structure
