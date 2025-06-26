@@ -16,6 +16,7 @@ import (
 	"github.com/WuttinunSkywalker/linebk-backend-assignment/internal/routes"
 	"github.com/WuttinunSkywalker/linebk-backend-assignment/pkg/logger"
 	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -67,6 +68,7 @@ func main() {
 	r := gin.Default()
 
 	r.Use(cors.Default())
+	r.Use(gzip.Gzip(gzip.DefaultCompression))
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 	r.Use(middleware.ErrorHandler())
