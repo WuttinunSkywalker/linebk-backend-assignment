@@ -231,14 +231,23 @@ If you need more data than the default seed provides, you can download additiona
 **Import via Docker:**
 
 ```bash
-docker exec -i assignment-mysql mysql -u root -psecret assignment < mock_data.sql
+# Option 1: Navigate to downloaded file location first
+cd /path/to/downloaded/files
+docker exec -i assignment-mysql mysql -u root -psecret assignment < {filename}.sql
+
+# Option 2: Use full path to file
+docker exec -i assignment-mysql mysql -u root -psecret assignment < /path/to/{filename}.sql
 ```
 
 **Import via Local MySQL:**
 
 ```bash
-# If running MySQL locally
-mysql -u root -p assignment < mock_data.sql
+# Option 1: Navigate to downloaded file location first
+cd /path/to/downloaded/files
+mysql -u root -p assignment < {filename}.sql
+
+# Option 2: Use full path to file
+mysql -u root -p assignment < /path/to/{filename}.sql
 ```
 
 ### Local Development Migrations
